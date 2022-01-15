@@ -1,6 +1,7 @@
 package gui;
 
 import game.GameBoard;
+import game.Vector2d;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

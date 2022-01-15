@@ -8,6 +8,9 @@ public class GameBoard {
     public final Map<Vector2d, Pawn> board = new HashMap<>();
     public Players turn = Players.BLUE_PLAYER;
 
+    public Vector2d chosenPosition;
+    public boolean ifChosen = false;
+
     public GameBoard() {
         for (int i = 0; i < BOARD_SIZE; i++) {
             this.board.put(new Vector2d(i, 0), new Pawn(Players.BLUE_PLAYER));

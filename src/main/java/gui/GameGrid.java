@@ -62,31 +62,51 @@ public class GameGrid {
         }
     }
 
+    private void createPawn(int i, int j) {
+        int finalJ = i+1;
+        int finalI = GameBoard.BOARD_SIZE-j;
+        this.grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == finalI && GridPane.getColumnIndex(node) == finalJ);
+
+        StackPane stack = new StackPane();
+        stack.setBorder(new Border(new BorderStroke(Color.web("0x000000"),
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(0.4))));
+
+        if (gameBoard.board.containsKey(new Vector2d(i, j))) {
+            Circle circle = new Circle();
+            circle.setRadius(17);
+            String color = gameBoard.board.get(new Vector2d(i, j)).ownedBy.getColor();
+            circle.setFill(Color.web(color));
+            circle.setStroke(Color.web(color));
+            stack.getChildren().add(circle);
+        }
+
+        stack.setOnMouseClicked(event -> {
+            if (gameBoard.board.containsKey(new Vector2d(i, j))) {
+                Vector2d oldChosen = this.gameBoard.chosenPosition;
+
+                if (oldChosen != null && gameBoard.board.containsKey(oldChosen)) {
+                    createPawn(oldChosen.x, oldChosen.y);
+                }
+
+                this.gameBoard.ifChosen = true;
+                this.gameBoard.chosenPosition = new Vector2d(i, j);
+
+                Circle innerCircle = new Circle();
+                innerCircle.setRadius(10);
+                innerCircle.setFill(Color.web("#39e609"));
+                innerCircle.setStroke(Color.web("#39e609"));
+                stack.getChildren().add(innerCircle);
+            }
+        });
+
+        GridPane.setHalignment(stack, HPos.CENTER);
+        grid.add(stack, i+1, GameBoard.BOARD_SIZE-j,1,1);
+    }
+
     public void updateGrid() {
         for (int i=0; i < GameBoard.BOARD_SIZE; i++) {
             for (int j=0; j < GameBoard.BOARD_SIZE; j++) {
-                int finalJ = i+1;
-                int finalI = GameBoard.BOARD_SIZE-j;
-                this.grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) == finalI && GridPane.getColumnIndex(node) == finalJ);
-
-                StackPane stack = new StackPane();
-                stack.setBorder(new Border(new BorderStroke(Color.web("0x000000"),
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(0.4))));
-
-                if (gameBoard.board.containsKey(new Vector2d(i, j))) {
-                    Circle circle = new Circle();
-                    circle.setRadius(17);
-                    String color = gameBoard.board.get(new Vector2d(i, j)).ownedBy.getColor();
-                    circle.setFill(Color.web(color));
-                    circle.setStroke(Color.web(color));
-                    stack.getChildren().add(circle);
-                }
-                stack.setOnMouseClicked(event -> {
-
-                });
-
-                GridPane.setHalignment(stack, HPos.CENTER);
-                grid.add(stack, i+1, GameBoard.BOARD_SIZE-j,1,1);
+                createPawn(i, j);
             }
         }
     }
