@@ -13,7 +13,7 @@ pierwszy tego dokona − wygrywa. Nie ma możliwości gry remisowej.
 - przeskoczeniu przez pionek własny lub przeciwnika z pola bezpośrednio
   sąsiadującego z przeskakiwanym pionkiem na pole bezpośrednio za nim(można
   przeskoczyć 1 pole),
-- wykonaniu całej serii skoków, na przykład:
+- wykonaniu całej serii skoków.
 
 **Dodatkowo:**
 - zmiana kierunku skoków jest możliwa,
