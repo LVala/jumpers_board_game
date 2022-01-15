@@ -12,11 +12,6 @@ public class Vector2d {
     }
 
     @Override
-    public String toString() {
-        return String.format("(%d, %d)", this.x, this.y);
-    }
-
-    @Override
     public boolean equals(Object other) {
         if (this == other) return true;
         if (!(other instanceof Vector2d that)) return false;

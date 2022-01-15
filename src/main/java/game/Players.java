@@ -15,4 +15,11 @@ public enum Players {
             case BLUE_PLAYER -> "#3c32a8";
         };
     }
+
+    public String getName() {
+        return switch(this) {
+            case RED_PLAYER -> "Red";
+            case BLUE_PLAYER -> "Blue";
+        };
+    }
 }

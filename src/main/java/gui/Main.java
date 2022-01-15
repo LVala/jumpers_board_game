@@ -2,7 +2,7 @@ package gui;
 
 public class Main {
 
-    // Projekt nr1 na Programowanie Obiektowe - Generator ewolucyjny
+    // Projekt nr2 na Programowanie Obiektowe - Skoczki
     // informatyka WIET AGH 2021/22
     // autor: Lukasz Wala
 

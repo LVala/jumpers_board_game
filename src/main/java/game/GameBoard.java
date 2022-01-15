@@ -61,14 +61,14 @@ public class GameBoard {
         return true;
     }
 
-    public void move(Vector2d position, String path) throws IllegalArgumentException {
-        if (!this.board.containsKey(position) || !this.board.get(position).ownedBy.equals(this.turn)) throw new IllegalArgumentException("Invalid chosen field");
+    public void move(String path) throws IllegalArgumentException {
+        if (!this.board.containsKey(this.chosenPosition) || !this.board.get(this.chosenPosition).ownedBy.equals(this.turn)) throw new IllegalArgumentException("Invalid chosen field");
 
         List<Vector2d> movesList = parsePath(path);
-        if (!validateMoves(position, movesList)) throw new IllegalArgumentException("Invalid moves sequence");
+        if (!validateMoves(this.chosenPosition, movesList)) throw new IllegalArgumentException("Invalid moves sequence");
 
         Vector2d newPosition = movesList.get(movesList.size()-1);
-        this.board.remove(position);
+        this.board.remove(this.chosenPosition);
         this.board.put(newPosition, new Pawn(this.turn));
         this.turn = this.turn.getOther();
     }
@@ -78,27 +78,13 @@ public class GameBoard {
         boolean redWon = true;
 
         for (int i = 0; i < BOARD_SIZE; i++) {
-            if (!board.get(new Vector2d(i, 0)).ownedBy.equals(Players.RED_PLAYER)) redWon = false;
-            if (!board.get(new Vector2d(i, 1)).ownedBy.equals(Players.RED_PLAYER)) redWon = false;
+            if (!board.containsKey(new Vector2d(i, 0)) || !board.get(new Vector2d(i, 0)).ownedBy.equals(Players.RED_PLAYER)) redWon = false;
+            if (!board.containsKey(new Vector2d(i, 1)) || !board.get(new Vector2d(i, 1)).ownedBy.equals(Players.RED_PLAYER)) redWon = false;
 
-            if (!board.get(new Vector2d(i, BOARD_SIZE-1)).ownedBy.equals(Players.BLUE_PLAYER)) blueWon = false;
-            if (!board.get(new Vector2d(i, BOARD_SIZE-2)).ownedBy.equals(Players.BLUE_PLAYER)) blueWon = false;
+            if (!board.containsKey(new Vector2d(i, BOARD_SIZE-1)) || !board.get(new Vector2d(i, BOARD_SIZE-1)).ownedBy.equals(Players.BLUE_PLAYER)) blueWon = false;
+            if (!board.containsKey(new Vector2d(i, BOARD_SIZE-2)) || !board.get(new Vector2d(i, BOARD_SIZE-2)).ownedBy.equals(Players.BLUE_PLAYER)) blueWon = false;
         }
 
         return blueWon || redWon;
-    }
-
-    // TODO do usuniecia
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        for (int i=0; i<8; i++) {
-            for (int j=0; j<8; j++) {
-                if (!this.board.containsKey(new Vector2d(j, i))) str.append("* ");
-                else if (this.board.get(new Vector2d(j, i)).ownedBy.equals(Players.BLUE_PLAYER)) str.append("B ");
-                else str.append("R ");
-            }
-            str.append("\n");
-        }
-        return str.toString();
     }
 }
