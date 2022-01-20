@@ -50,6 +50,7 @@ public class MainGameStage extends Application {
         btn.setOnAction(event -> {
             try {
                 if (gameBoard.ifChosen) {
+                    inputTextField.setStyle(null);
                     gameBoard.move(inputTextField.getText());
                     gameGrid.updateGrid();
                     turnCircle.setFill(Color.web(gameBoard.turn.getColor()));
@@ -57,6 +58,7 @@ public class MainGameStage extends Application {
                     if (gameBoard.checkIfWon()) {
                         showPopup(gameBoard, primaryStage);
                     }
+                    inputTextField.setText("");
                 }
             }
             catch (IllegalArgumentException ex) {
