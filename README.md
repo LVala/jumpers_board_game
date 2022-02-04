@@ -1,11 +1,8 @@
-# Projekt nr 2 - skoczki
+# Jumpers - 2nd project for Object Oriented Programming Course
+### Łukasz Wala, 2021/22 winter semester, Computer Science WIEiT AGH UST
 
-To repozytorium zawiera drugi z dwóch projektów na przedmiot Programowanie Obiektowe
-w semestrze zimowym 2021/22.
+This repository contains second of two projects for OOP Course - very simple board game with a GUI written in JavaFX.
 
-Autor: Łukasz Wala
+[Original project repo](https://github.com/apohllo/obiektowe-lab/blob/master/proj2/SKOCZKI.md)
 
-[Oryginalne repozytorium projektu](https://github.com/apohllo/obiektowe-lab/blob/master/proj2/SKOCZKI.md)
-
-[Opis projektu](opisProjektu.md) na wypadek, gdyby oryginalne repozytorium zostało
-usunięte lub zmodyfikowane.
+[Project description (in Polish)](opisProjektu.md) in case of original repo being removed or modified.
